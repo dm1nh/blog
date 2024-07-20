@@ -1,0 +1,15 @@
+---
+import NavLink from "./NavLink.astro"
+const pathname = Astro.url.pathname
+---
+
+<nav>
+  <ul class="flex items-center space-x-4 text-sm font-medium tracking-tight">
+    <NavLink href="/" active={pathname === "/"}>Home</NavLink>
+    <NavLink href="/blog" active={pathname.startsWith("/blog")}>Blog</NavLink>
+    <NavLink href="/notes" active={pathname.startsWith("/notes")}>Notes</NavLink
+    >
+    <NavLink href="/about" active={pathname.startsWith("/about")}>About</NavLink
+    >
+  </ul>
+</nav>

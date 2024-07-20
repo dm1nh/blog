@@ -1,0 +1,20 @@
+---
+import Nav from "./Nav.astro"
+import ThemeButton from "./ThemeButton.astro"
+---
+
+<header>
+  <div class="container flex h-16 items-center justify-between space-x-8">
+    <div class="flex items-center space-x-8">
+      <a href="/">
+        <div class="text-4xl font-extrabold tracking-tighter">
+          dm<span class="text-destructive">1</span>nh
+        </div>
+      </a>
+      <Nav />
+    </div>
+    <div>
+      <ThemeButton />
+    </div>
+  </div>
+</header>

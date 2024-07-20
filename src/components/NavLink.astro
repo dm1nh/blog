@@ -1,0 +1,9 @@
+---
+const { href, active } = Astro.props
+---
+
+<li>
+  <a href={href} class={active ? "text-foreground" : "text-muted-foreground"}
+    ><slot /></a
+  >
+</li>

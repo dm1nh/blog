@@ -1,0 +1,35 @@
+---
+import BlogLayout from "@/layouts/BlogLayout.astro"
+import ArticleImage from "@/components/mdx/ArticleImage.astro"
+import Anchor from "@/components/mdx/Anchor.astro"
+import Heading1 from "@/components/mdx/Heading1.astro"
+import Heading2 from "@/components/mdx/Heading2.astro"
+import Heading3 from "@/components/mdx/Heading3.astro"
+import InlineCode from "@/components/mdx/InlineCode.astro"
+import { type CollectionEntry, getCollection } from "astro:content"
+type Props = CollectionEntry<"posts">
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts")
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
+}
+
+const post = Astro.props
+const { Content } = await post.render()
+---
+
+<BlogLayout {...post.data}>
+  <Content
+    components={{
+      h1: Heading1,
+      h2: Heading2,
+      h3: Heading3,
+      img: ArticleImage,
+      a: Anchor,
+      code: InlineCode,
+    }}
+  />
+</BlogLayout>

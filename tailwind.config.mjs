@@ -8,7 +8,7 @@ export default {
       center: true,
       padding: "1rem",
       screens: {
-        "2xl": "1200px",
+        "2xl": "960px",
       },
     },
     fontSize: {
@@ -27,6 +27,7 @@ export default {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
+        "background-light": "hsl(var(--background-light))",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",

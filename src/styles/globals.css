@@ -5,10 +5,11 @@
 @layer base {
   :root {
     --background: 240 14% 11%;
+    --background-light: 240 14% 15%;
     --foreground: 53 20% 84%;
 
     --muted: 240 13% 24%;
-    --muted-foreground: 53 4% 39%;
+    --muted-foreground: 240 13% 54%;
 
     --accent: 83 51% 66%;
     --accent-foreground: 240 14% 11%;
@@ -25,7 +26,7 @@
     --primary: 51 21% 94%;
     --primary-foreground: 240 14% 11%;
 
-    --secondary: 240 37% 57%;
+    --secondary: 240 13% 50%;
     --secondary-foreground: 53 20% 84%;
 
     --destructive: 353 70% 65%;

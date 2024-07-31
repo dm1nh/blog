@@ -1,7 +1,24 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
+import { sortPostsByDate } from "@/utils"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import PostCard from "@/components/PostCard.astro"
+import { getCollection } from "astro:content"
+
+const posts = (await getCollection("posts")).sort((a, b) =>
+  sortPostsByDate(a, b)
+)
 ---
 
 <BaseLayout title="Blog">
-  <div>Blog</div>
+  <section>
+    <ul class="flex flex-col items-stretch space-y-6">
+      {
+        posts.map((post: any) => (
+          <li>
+            <PostCard slug={post.slug} data={post.data} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </BaseLayout>

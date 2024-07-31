@@ -1,0 +1,53 @@
+---
+import { getEntries, type CollectionEntry } from "astro:content"
+import FormattedDate from "./FormattedDate.astro"
+import TagList from "@/components/TagList.astro"
+
+interface Props {
+  slug: string
+  data: CollectionEntry<"posts">["data"]
+}
+
+const { slug, data } = Astro.props
+
+const tags = await getEntries(data.tags)
+---
+
+<div class="flex flex-col items-stretch rounded-lg bg-background-light shadow">
+  <div class="flex items-center justify-between p-4">
+    <TagList tags={tags} />
+    <div class="flex items-center space-x-4">
+      {
+        data.updatedAt && (
+          <div class="text-sm">
+            <span class="text-muted-foreground">Updated at</span>{" "}
+            <FormattedDate date={data.updatedAt} />
+          </div>
+        )
+      }
+      <div class="text-sm">
+        <span class="text-muted-foreground">Published at</span>
+        <FormattedDate date={data.publishedAt} />
+      </div>
+    </div>
+  </div>
+  {
+    data.image && (
+      <a href={`/blog/${slug}`} class="group">
+        <div class="overflow-hidden">
+          <img
+            class="transition-transform duration-150 ease-out group-hover:scale-125"
+            src={data.image}
+            alt={data.image}
+          />
+        </div>
+      </a>
+    )
+  }
+  <div class="p-4">
+    <a href={`/blog/${slug}`} class="hover:underline">
+      <h3 class="text-3xl font-bold">{data.title}</h3>
+    </a>
+    <p class="text-foreground/80">{data.description}</p>
+  </div>
+</div>

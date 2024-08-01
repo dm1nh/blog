@@ -1,15 +1,16 @@
 ---
 import { getEntries, type CollectionEntry } from "astro:content"
-import FormattedDate from "./FormattedDate.astro"
+
 import TagList from "@/components/TagList.astro"
+
+import FormattedDate from "./FormattedDate.astro"
 
 interface Props {
   slug: string
-  data: CollectionEntry<"posts">["data"]
+  data: CollectionEntry<"blog">["data"]
 }
 
 const { slug, data } = Astro.props
-
 const tags = await getEntries(data.tags)
 ---
 
@@ -36,9 +37,9 @@ const tags = await getEntries(data.tags)
       <a href={`/blog/${slug}`} class="group">
         <div class="overflow-hidden">
           <img
-            class="transition-transform duration-150 ease-out group-hover:scale-125"
-            src={data.image}
+            src={"/src/content/blog/" + data.image}
             alt={data.image}
+            class="transition-transform duration-200 ease-out hover:scale-125"
           />
         </div>
       </a>

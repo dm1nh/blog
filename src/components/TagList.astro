@@ -1,9 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content"
+
 import Tag from "./Tag.astro"
 
 interface Props {
-  tags: CollectionEntry<"posts" | "notes">["data"]["tags"]
+  tags: CollectionEntry<"blog" | "note">["data"]["tags"]
 }
 
 const { tags } = Astro.props

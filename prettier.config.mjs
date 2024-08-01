@@ -6,7 +6,26 @@ export default {
   semi: false,
   trailingComma: "es5",
   endOfLine: "lf",
-  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  plugins: [
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss",
+    "@ianvs/prettier-plugin-sort-imports",
+  ],
+  importOrder: [
+    "^astro(.*)$",
+    "",
+    "^@/utils/(.*)$",
+    "",
+    "^@/data/(.*)$",
+    "",
+    "^@/layouts/(.*)$",
+    "",
+    "^@/components/(.*)$",
+    "",
+    "^[./]",
+  ],
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
+  importOrderTypeScriptVersion: "5.0.0",
   overrides: [
     {
       files: "*.astro",
@@ -15,4 +34,4 @@ export default {
       },
     },
   ],
-};
+}

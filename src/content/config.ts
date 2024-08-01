@@ -1,36 +1,34 @@
 import { defineCollection, reference, z } from "astro:content"
 
-const posts = defineCollection({
+const blog = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    tags: z.array(reference("tags")),
+    tags: z.array(reference("tag")),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     image: z.string().optional(),
   }),
 })
 
-const notes = defineCollection({
+const note = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    tags: z.array(reference("tags")),
+    tags: z.array(reference("tag")),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     image: z.string().optional(),
   }),
 })
 
-const tags = defineCollection({
+const tag = defineCollection({
   type: "data",
   schema: z.object({
     name: z.string(),
-    bg: z.string(),
-    fg: z.string(),
   }),
 })
 
-export const collections = { posts, notes, tags }
+export const collections = { blog, note, tag }

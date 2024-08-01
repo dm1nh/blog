@@ -1,41 +1,40 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content"
-import BaseLayout from "@/layouts/BaseLayout.astro"
-import PostCard from "@/components/PostCard.astro"
-import Icon from "@/components/Icon.astro"
-import { sortPostsByDate } from "@/utils"
+import { getPostsByTags, getTags } from "@/data"
+import { type CollectionEntry } from "astro:content"
 
-type Props = CollectionEntry<"tags">
+import BaseLayout from "@/layouts/BaseLayout.astro"
+
+import BlogCard from "@/components/BlogCard.astro"
+import Icon from "@/components/Icon.astro"
+
+type Props = CollectionEntry<"tag">
 
 export async function getStaticPaths() {
-  const tags = await getCollection("tags")
-  return tags.map((tag) => ({
+  return (await getTags()).map((tag) => ({
     params: { id: tag.id },
     props: tag,
   }))
 }
 
-const tag = Astro.props
-const posts = (await getCollection("posts"))
-  .filter((post) => post.data.tags.map((t) => t.id).includes(tag.id))
-  .sort((a, b) => sortPostsByDate(a, b))
+const { id, data } = Astro.props
+const postsByTag = await getPostsByTags(id)
 ---
 
-<BaseLayout title={tag.id}>
+<BaseLayout title={id}>
   <section>
     <div class="flex items-center justify-center space-x-4">
-      <Icon name={`tags/${tag.id}`} class="h-8 w-8" />
+      <Icon name={`tags/${id}`} class="h-8 w-8" />
       <h1 class="text-center text-4xl font-bold tracking-tighter">
-        {tag.data.name}
+        {data.name}
       </h1>
     </div>
   </section>
   <section>
     <ul class="flex flex-col items-stretch space-y-6">
       {
-        posts.map((post: any) => (
+        postsByTag.map((post) => (
           <li>
-            <PostCard slug={post.slug} data={post.data} />
+            <BlogCard slug={post.slug} data={post.data} />
           </li>
         ))
       }

@@ -1,5 +1,3 @@
-import type { CollectionEntry } from "astro:content"
-
 export function formatDate(publishedAt: string | Date): string {
   var options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -11,8 +9,8 @@ export function formatDate(publishedAt: string | Date): string {
 }
 
 export function sortPostsByDate(
-  a: CollectionEntry<"posts" | "notes">,
-  b: CollectionEntry<"posts" | "notes">
+  a: { data: { publishedAt: Date } },
+  b: { data: { publishedAt: Date } }
 ) {
   const publishedAtA = new Date(a.data.publishedAt)
   const publishedAtB = new Date(b.data.publishedAt)

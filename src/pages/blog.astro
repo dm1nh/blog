@@ -1,12 +1,11 @@
 ---
-import { sortPostsByDate } from "@/utils"
-import BaseLayout from "@/layouts/BaseLayout.astro"
-import PostCard from "@/components/PostCard.astro"
-import { getCollection } from "astro:content"
+import { getPosts } from "@/data"
 
-const posts = (await getCollection("posts")).sort((a, b) =>
-  sortPostsByDate(a, b)
-)
+import BaseLayout from "@/layouts/BaseLayout.astro"
+
+import BlogCard from "@/components/BlogCard.astro"
+
+const posts = await getPosts()
 ---
 
 <BaseLayout title="Blog">
@@ -15,7 +14,7 @@ const posts = (await getCollection("posts")).sort((a, b) =>
       {
         posts.map((post: any) => (
           <li>
-            <PostCard slug={post.slug} data={post.data} />
+            <BlogCard slug={post.slug} data={post.data} />
           </li>
         ))
       }

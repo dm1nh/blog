@@ -1,8 +1,8 @@
 export function formatDate(publishedAt: string | Date): string {
   var options: Intl.DateTimeFormatOptions = {
     year: "numeric",
-    month: "long",
-    day: "numeric",
+    month: "short",
+    day: "2-digit",
   }
 
   return new Date(publishedAt).toLocaleDateString("en-US", options)

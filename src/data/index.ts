@@ -1,7 +1,7 @@
-import { sortPostsByDate } from "@/utils"
+import { sortPostsByDate } from "~/utils"
 import { getCollection, type CollectionEntry } from "astro:content"
 
-type ContentType = "blog" | "note"
+export type ContentType = "blog" | "note"
 
 async function getUnsortedPosts(type: ContentType = "blog") {
   return (await getCollection(type)).map((post) => ({

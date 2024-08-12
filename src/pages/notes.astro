@@ -1,7 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
+import NoteList from "~/components/NoteList.astro"
+import { getPosts } from "~/data"
+import BaseLayout from "~/layouts/BaseLayout.astro"
+
+const posts = await getPosts("note")
 ---
 
-<BaseLayout title="Notes">
-  <div>Notes</div>
+<BaseLayout title="Blog">
+  <section>
+    <NoteList posts={posts} />
+  </section>
 </BaseLayout>

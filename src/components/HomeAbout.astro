@@ -1,0 +1,38 @@
+---
+import profilePicture from "~/images/me.png"
+import { Image } from "astro:assets"
+---
+
+<div
+  class="flex items-center space-x-8 rounded-2xl border-4 border-border bg-background-light p-8 shadow-2xl"
+>
+  <Image
+    src={profilePicture}
+    alt="dm1nh"
+    class="profile-picture h-[150px] w-[150px] rounded-full border-2 border-border shadow-xl"
+  />
+  <div class="text-xl leading-relaxed">
+    <h3 class="text-3xl">
+      I&apos;m <b
+        ><span class="text-accent">@</span>dm<span class="text-destructive"
+          >1</span
+        >nh</b
+      >
+    </h3>
+    <p class="text-foreground/75">
+      I am currently a 🔥 self-taught Web developer at Ho Chi Minh, Vietnam 🇻🇳.
+    </p>
+    <p class="text-foreground/50">
+      I often write ✒️ content about bleeding-edge web frameworks and web
+      technologies.
+    </p>
+  </div>
+</div>
+
+<style>
+  .profile-picture {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+</style>

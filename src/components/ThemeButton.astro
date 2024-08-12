@@ -2,6 +2,14 @@
 import Icon from "./Icon.astro"
 ---
 
-<button class="rounded p-2">
+<button class="rounded p-2" data-theme-button>
   <Icon name="icons/dark-mode" />
 </button>
+
+<script>
+  const button = document.querySelector("[data-theme-button]")
+
+  button?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark")
+  })
+</script>

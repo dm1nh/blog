@@ -4,10 +4,10 @@ import { getPosts } from "~/data"
 import BlogLayout from "~/layouts/BlogLayout.astro"
 import { type CollectionEntry } from "astro:content"
 
-type Props = CollectionEntry<"blog">
+type Props = CollectionEntry<"note">
 
 export async function getStaticPaths() {
-  return (await getPosts()).map((post) => ({
+  return (await getPosts("note")).map((post) => ({
     params: { slug: post.slug },
     props: post,
   }))

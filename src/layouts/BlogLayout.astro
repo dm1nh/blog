@@ -1,9 +1,7 @@
 ---
-import { formatDate } from "@/utils"
+import FormattedDate from "~/components/FormattedDate.astro"
+import TagList from "~/components/TagList.astro"
 import { getEntries, type CollectionEntry } from "astro:content"
-
-import FormattedDate from "@/components/FormattedDate.astro"
-import TagList from "@/components/TagList.astro"
 
 import BaseLayout from "./BaseLayout.astro"
 
@@ -22,7 +20,7 @@ const populatedTags = await getEntries(tags)
         )
       }
       <div
-        class="relative z-20 mx-auto -mt-12 flex w-[96%] flex-col items-center space-y-4 rounded bg-background p-4"
+        class="relative z-20 mx-auto -mt-12 flex w-[96%] flex-col items-center space-y-4 rounded bg-background p-8"
       >
         <div class="flex items-center space-x-4">
           <div class="text-secondary">
@@ -45,6 +43,6 @@ const populatedTags = await getEntries(tags)
       </div>
     </div>
 
-    <div class="space-y-4 text-xl leading-relaxed"><slot /></div>
+    <div class="space-y-4 px-4 py-8 text-xl leading-relaxed"><slot /></div>
   </article>
 </BaseLayout>

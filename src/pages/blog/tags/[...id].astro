@@ -1,0 +1,22 @@
+---
+import { getPostsByTags, getTags } from "~/data"
+import { type CollectionEntry } from "astro:content"
+
+import PostsByTagLayout from "~/layouts/PostsByTagLayout.astro"
+
+interface Props {
+  tag: CollectionEntry<"tag">
+}
+
+export async function getStaticPaths() {
+  return (await getTags()).map((tag) => ({
+    params: { id: tag.id },
+    props: { tag },
+  }))
+}
+
+const { tag } = Astro.props
+const postsByTag = await getPostsByTags(tag.id)
+---
+
+<PostsByTagLayout tag={tag} posts={postsByTag} />

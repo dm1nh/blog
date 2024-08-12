@@ -1,23 +1,15 @@
 ---
-import { getPosts } from "@/data"
+import { getPosts } from "~/data"
 
-import BaseLayout from "@/layouts/BaseLayout.astro"
+import BaseLayout from "~/layouts/BaseLayout.astro"
 
-import BlogCard from "@/components/BlogCard.astro"
+import BlogList from "~/components/BlogList.astro"
 
 const posts = await getPosts()
 ---
 
 <BaseLayout title="Blog">
   <section>
-    <ul class="flex flex-col items-stretch space-y-6">
-      {
-        posts.map((post: any) => (
-          <li>
-            <BlogCard slug={post.slug} data={post.data} />
-          </li>
-        ))
-      }
-    </ul>
+    <BlogList posts={posts} />
   </section>
 </BaseLayout>

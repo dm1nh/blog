@@ -1,15 +1,22 @@
 ---
+import { type ContentType } from "~/data"
 import type { CollectionEntry } from "astro:content"
 
 import Icon from "./Icon.astro"
 
-type Props = CollectionEntry<"tag">
-const { id, data } = Astro.props
+interface Props {
+  tag: CollectionEntry<"tag">
+  type?: ContentType
+}
+const {
+  type = "blog",
+  tag: { id, data },
+} = Astro.props
 ---
 
 <a
-  href={`/tags/${id}`}
-  class="flex items-center space-x-2 rounded bg-foreground/10 px-2 py-1 text-sm font-medium text-foreground shadow duration-100 hover:bg-foreground/15"
+  href={`/${type}/tags/${id}`}
+  class="flex items-center space-x-2 rounded-[2px] bg-foreground/15 px-2 py-1 text-sm font-medium text-foreground/75 shadow duration-100 hover:bg-foreground/15"
 >
   <Icon name={`tags/${id}`} class="h-4 w-4" />
   <span>{data.name}</span>

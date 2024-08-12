@@ -1,7 +1,6 @@
 ---
+import TagList from "~/components/TagList.astro"
 import { getEntries, type CollectionEntry } from "astro:content"
-
-import TagList from "@/components/TagList.astro"
 
 import FormattedDate from "./FormattedDate.astro"
 
@@ -14,7 +13,7 @@ const { slug, data } = Astro.props
 const tags = await getEntries(data.tags)
 ---
 
-<div class="flex flex-col items-stretch rounded-lg bg-background-light shadow">
+<div class="flex flex-col items-stretch rounded bg-background-light shadow">
   <div class="flex items-center justify-between p-4">
     <TagList tags={tags} />
     <div class="flex items-center space-x-4">

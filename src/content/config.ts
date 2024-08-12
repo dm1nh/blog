@@ -16,11 +16,9 @@ const note = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    description: z.string(),
     tags: z.array(reference("tag")),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
-    image: z.string().optional(),
   }),
 })
 

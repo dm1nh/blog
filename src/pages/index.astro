@@ -1,7 +1,23 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
+import BlogList from "~/components/BlogList.astro"
+import HomeAbout from "~/components/HomeAbout.astro"
+import { getPosts } from "~/data"
+import BaseLayout from "~/layouts/BaseLayout.astro"
+
+const posts = (await getPosts()).slice(0, 4)
 ---
 
 <BaseLayout title="Astro" description="Welcome to my blog">
-  Hello from the body
+  <section class="px-4">
+    <HomeAbout />
+  </section>
+  <section class="space-y-4 px-4">
+    <h3 class="text-3xl font-semibold">Lastest Blog</h3>
+    <BlogList posts={posts} />
+    <a
+      href="/blog"
+      class="block text-center font-medium text-muted-foreground transition-colors duration-100 hover:text-foreground/80 hover:underline"
+      >or See all posts</a
+    >
+  </section>
 </BaseLayout>

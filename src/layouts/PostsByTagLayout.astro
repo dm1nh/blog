@@ -1,0 +1,25 @@
+---
+import BlogList from "~/components/BlogList.astro"
+import Icon from "~/components/Icon.astro"
+
+import BaseLayout from "./BaseLayout.astro"
+
+const {
+  tag: { id, data },
+  posts,
+} = Astro.props
+---
+
+<BaseLayout title={id}>
+  <section>
+    <div class="flex items-center justify-center space-x-4">
+      <Icon name={`tags/${id}`} class="h-8 w-8" />
+      <h1 class="text-center text-4xl font-bold tracking-tighter">
+        {data.name}
+      </h1>
+    </div>
+  </section>
+  <section>
+    <BlogList posts={posts} />
+  </section>
+</BaseLayout>

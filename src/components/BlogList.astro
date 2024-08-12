@@ -1,0 +1,20 @@
+---
+import { getPosts, getPostsByTags } from "~/data"
+
+import BlogCard from "./BlogCard.astro"
+
+interface Props {
+  posts: Awaited<ReturnType<typeof getPosts | typeof getPostsByTags>>
+}
+const { posts } = Astro.props
+---
+
+<ul class="flex flex-col items-stretch space-y-6">
+  {
+    posts.map((post) => (
+      <li>
+        <BlogCard slug={post.slug} data={post.data} />
+      </li>
+    ))
+  }
+</ul>
